@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../node_modules/layui-src/dist/css/layui.css">
+    <script src="../node_modules/layui-src/dist/layui.all.js"></script>
+    <script>
+        layui.config({
+            base: './' //你存放新模块的目录，注意，不是layui的模块目录
+        });
+        layui.use('index')
+        layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可以不填数组。如：layui.use('form')
+            var form = layui.form //获取form模块
+                ,upload = layui.upload; //获取upload模块
+
+            //监听提交按钮
+            form.on('submit(test)', function(data){
+                console.log(data);
+            });
+
+            //实例化一个上传控件
+            upload({
+                url: '上传接口url'
+                ,success: function(data){
+                    console.log(data);
+                }
+            })
+        });
+
+    </script>
+</head>
+<body>
+<div class="layui-tab">
+    <ul class="layui-tab-title">
+        <li class="layui-this">标题一</li>
+        <li>标题二</li>
+        <li>标题三</li>
+    </ul>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+            内容1
+        <form action="/">
+            <button class="layui-btn" lay-submit lay-filter="login">登入</button>
+        </form>
+        </div>
+        <div class="layui-tab-item">内容2</div>
+        <div class="layui-tab-item">内容3</div>
+    </div>
+</div>
+</body>
+</html>
